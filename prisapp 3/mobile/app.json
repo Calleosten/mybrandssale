@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Prisbevakning",
+    "slug": "prisapp-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.dittnamn.prisapp",
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.dittnamn.prisapp",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "supportsTablet": false
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#222222"
+        }
+      ]
+    ]
+  }
+}
