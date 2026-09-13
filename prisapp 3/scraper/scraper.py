@@ -225,7 +225,9 @@ def notify_watchers(db, product: models.Product, drop_percent: float):
 
 def run():
     db = SessionLocal()
-    try:
+ try:
+        print("!!!! DEBUG MARKER 12345 - NY KOD KÖRS !!!!")
+      
         for brand_config in BRANDS:
             brand = db.query(models.Brand).filter(models.Brand.name == brand_config["name"]).first()
             if not brand:
