@@ -1,5 +1,5 @@
 // Byt ut mot din deployade backend-URL (t.ex. Render, Railway, Fly.io)
-export const API_BASE_URL = "https://din-backend.example.com";
+export const API_BASE_URL = "https://mybrandssale-2.onrender.com";
 
 export async function fetchProducts({ brand, onSaleOnly } = {}) {
   const params = new URLSearchParams();
