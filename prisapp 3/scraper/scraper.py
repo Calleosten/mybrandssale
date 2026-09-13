@@ -61,9 +61,23 @@ def fetch_products_shopify(brand_config: dict) -> list[dict]:
 
     while True:
         resp = requests.get(url, headers=HEADERS, params={"limit": 250, "page": page}, timeout=15)
+
+        print(f"    [{brand_config['name']}] GET {resp.url} -> status {resp.status_code}")
+        if resp.history:
+            print(f"    [{brand_config['name']}] Omdirigerades via: {[r.url for r in resp.history]}")
+
         resp.raise_for_status()
-        data = resp.json()
+
+        try:
+            data = resp.json()
+        except ValueError:
+            print(f"    [{brand_config['name']}] Svaret var inte giltig JSON. Första 300 tecknen:")
+            print(f"    {resp.text[:300]!r}")
+            break
+
         batch = data.get("products", [])
+        if page == 1:
+            print(f"    [{brand_config['name']}] Sida 1 innehöll {len(batch)} produkter i rådata")
         if not batch:
             break
 
