@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import desc
 from typing import List
@@ -9,7 +10,12 @@ from .database import engine, get_db, Base
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Prisbevakning API")
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def _product_to_out(p: models.Product) -> schemas.ProductOut:
     out = schemas.ProductOut.model_validate(p)
